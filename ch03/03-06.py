@@ -35,8 +35,10 @@ def predict(network, x):
 x, t = get_data()
 network = init_network()
 accuracy_cnt = 0
+
 print(f'x Shape : {x.shape}')
 print(f't Shape : {t.shape}')
+print(f'x : {x}')
 
 W1, W2, W3 = network['W1'], network['W2'], network['W3']
 # print(f'W1 Shape : {W1.shape}')
@@ -62,7 +64,6 @@ for i in range(0, len(x), batch_size):
     y_batch = predict(network, x_batch)
     
     p = np.argmax(y_batch, axis=1)
-    print(f'p : {p}')
     accuracy_cnt += np.sum(p == t[i:i+batch_size])
 
 print("Accuracy:" + str(float(accuracy_cnt) / len(x)))  # Accuracy:0.9352
